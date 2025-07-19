@@ -22,7 +22,7 @@ function UserDashboard() {
 
   const fetchUsers = () => {
     axios
-      .get('/users') // ✅ Fixed
+      .get('/api/users') // ✅ Fixed
       .then(res => setUsers(res.data))
       .catch(err => {
         console.error('Fetch Error:', err);
@@ -32,7 +32,7 @@ function UserDashboard() {
 
   const handleCreate = (userData) => {
     axios
-      .post('/users', userData) // ✅ Fixed
+      .post('/api/users', userData) // ✅ Fixed
       .then(() => {
         fetchUsers();
         setEditingUser(null);
@@ -43,7 +43,7 @@ function UserDashboard() {
   const handleUpdate = (id, userData) => {
     if (user?.role !== 'admin') return;
     axios
-      .put(`/users/${id}`, userData) // ✅ Fixed
+      .put(`/api/users/${id}`, userData) // ✅ Fixed
       .then(() => {
         fetchUsers();
         setEditingUser(null);
@@ -54,7 +54,7 @@ function UserDashboard() {
   const handleDelete = (id) => {
     if (user?.role !== 'admin') return;
     axios
-      .delete(`/users/${id}`) // ✅ Fixed
+      .delete(`/api/users/${id}`) // ✅ Fixed
       .then(fetchUsers)
       .catch(err => console.error('Delete Error:', err));
   };
